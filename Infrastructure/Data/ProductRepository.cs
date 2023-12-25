@@ -14,15 +14,32 @@ namespace Infrastructure.Data
     {
       _cntxt = cntxt;
     }
+
+    public async Task<IReadOnlyList<ProductBrand>> GetProductBrandsAsync()
+    {
+      return await _cntxt.ProductBrands.ToListAsync();
+    }
+
     public async Task<Product> GetProductByIdAsync(int id)
     {
-      return await _cntxt.Products.FindAsync(id);
+      return await _cntxt.Products
+      .Include(p => p.ProductType)
+      .Include(p => p.ProductType)
+      .FirstOrDefaultAsync(p => p.Id == id);
     }
 
     public async Task<IReadOnlyList<Product>> GetProductsAsync()
     {
-      
-      return await _cntxt.Products.ToListAsync();;
+      return await _cntxt.Products
+      .Include(p=>p.ProductBrand)
+      .Include(p=>p.ProductType)
+      .ToListAsync();
+
+    }
+
+    public async Task<IReadOnlyList<ProductType>> GetProductTypesAsync()
+    {
+      return await _cntxt.ProductTypes.ToListAsync();
     }
   }
 }
