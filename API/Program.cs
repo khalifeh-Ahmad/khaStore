@@ -25,6 +25,7 @@ namespace API
             try{
               var context=srvs.GetRequiredService<StoreContext>();
               await context.Database.MigrateAsync();
+              await StoreContextSeed.SeedAsync(context,loggerFactory);
             }
             catch(Exception ex )
             {
@@ -33,6 +34,7 @@ namespace API
             }
 
           }
+          host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
