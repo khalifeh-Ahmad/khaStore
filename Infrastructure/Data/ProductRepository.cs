@@ -1,5 +1,6 @@
 
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Core.Entities;
 using Core.Interfaces;
@@ -30,6 +31,11 @@ namespace Infrastructure.Data
 
     public async Task<IReadOnlyList<Product>> GetProductsAsync()
     {
+      // var typeId = 1;
+      // var porducts=_cntxt.Products.Where( x=> x.ProductTypeId == typeId )
+      // .Include(x=>x.ProductType)
+      // .ToListAsync();
+
       return await _cntxt.Products
       .Include(p=>p.ProductBrand)
       .Include(p=>p.ProductType)
