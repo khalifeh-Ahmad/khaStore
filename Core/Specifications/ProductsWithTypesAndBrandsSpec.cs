@@ -5,17 +5,17 @@ using System;
 
 namespace Core.Specifications
 {
-  public class ProductsWithTypesAndBrandsSpec :BaseSpecification<Product>
-  {
-    public ProductsWithTypesAndBrandsSpec()
+    public class ProductsWithTypesAndBrandsSpec : BaseSpecification<Product>
     {
-      AddInclude(x=> x.ProductType);
-      AddInclude(x=> x.ProductBrand);
+        public ProductsWithTypesAndBrandsSpec()
+        {
+            AddInclude(x => x.ProductType);
+            AddInclude(x => x.ProductBrand);
+        }
+        public ProductsWithTypesAndBrandsSpec(int id) : base(x => x.Id == id)
+        {
+            AddInclude(x => x.ProductType);
+            AddInclude(x => x.ProductBrand);
+        }
     }
-    public ProductsWithTypesAndBrandsSpec(int id):base(x=> x.Id == id)
-    {
-      AddInclude(x=> x.ProductType);
-      AddInclude(x=> x.ProductBrand);
-    }
-  }
 }
