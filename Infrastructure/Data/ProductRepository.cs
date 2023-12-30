@@ -35,7 +35,7 @@ namespace Infrastructure.Data
             // var porducts=_cntxt.Products.Where( x=> x.ProductTypeId == typeId )
             // .Include(x=>x.ProductType)
             // .ToListAsync();
-
+            
             return await _cntxt.Products
             .Include(p => p.ProductBrand)
             .Include(p => p.ProductType)
